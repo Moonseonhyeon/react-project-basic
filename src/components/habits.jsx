@@ -12,27 +12,37 @@ class Habits extends Component {
 
     handleIncrement = habit => {
        console.log(`handleIncreament ${habit.name}`);
-       
-    }
+       const habits = [...this.state.habits];
+       const index = habits.indexOf(habit);
+       habits[index].count++;
+       this.setState({habits: habits}); //키와 벨류(로컬 변수, 배열)가 동일한 이름을 가지면 하나로 생략가능
+    
+    };
 
     handleDecrement = habit => {
-        console.log(`handleDecreament ${habit}`);
-    }
+        const habits = [...this.state.habits];
+        const index = habits.indexOf(habit);
+        const count = habits[index].count -1;
+        habits[index].count = count < 0 ? 0 : count;
+        this.setState({habits});
+    };
 
     handleDelete = habit => {
-        console.log(`handleDelete ${habit.name}`);
-    }
+        const habits = this.state.habits.filter(item => item.id !== habit.id);
+        const index = habits.indexOf(habit);
+        this.setState({habits});
+    };
 
     render() {
         return <ul>
             {this.state.habits.map(habit => (
-                    <Habit 
-                        key = {habit.id} 
-                        habit = {habit} 
-                        onIncrement={this.handleIncrement}
-                        onDecrement={this.handleDecrement}
-                        onDelete={this.handleDelete}
-                        />
+                <Habit 
+                    key = {habit.id} 
+                    habit = {habit} 
+                    onIncrement={this.handleIncrement}
+                    onDecrement={this.handleDecrement}
+                    onDelete={this.handleDelete}
+                />
             ))}
         </ul>
     }
