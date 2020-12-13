@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class Add extends Component {
-handleChange = (e) => {
-    this.props.onChange(e); 
-};
-
 formRef = React.createRef();
 inputRef = React.createRef(); 
 /* 이렇게 맴버변수를 createRef()로 정의하면 Ref라는 오브젝트가 생김.

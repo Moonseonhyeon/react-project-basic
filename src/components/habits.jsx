@@ -8,23 +8,23 @@ class Habits extends Component {
         const index = habits.indexOf(habit);
         console.log(this.props.habits[index]);
         this.props.onIncrement(this.props.habits[index]);
-     }
+    }
  
-     handleDecrement = habit => {
-        const habits = [...this.props.habits];
-        const index = habits.indexOf(habit);
-         this.props.onDecrement(this.props.habits[index]);
-     }
- 
-     handleDelete = habit => {
-        const habits = [...this.props.habits];
-        const index = habits.indexOf(habit);
-         this.props.onDelete(this.props.habits[index]);
-     }
+    handleDecrement = habit => {
+    const habits = [...this.props.habits];
+    const index = habits.indexOf(habit);
+        this.props.onDecrement(this.props.habits[index]);
+    }
 
-     handleAdd = name => {
-         this.props.onAdd(name);
-     }
+    handleDelete = habit => {
+    const habits = [...this.props.habits];
+    const index = habits.indexOf(habit);
+        this.props.onDelete(this.props.habits[index]);
+    }
+
+    handleAdd = name => {
+        this.props.onAdd(name);
+    }
 
     render() {
         return <>
