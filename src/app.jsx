@@ -1,9 +1,7 @@
 import './app.css';
 import Habits from './components/habits';
-
-import React, { Component } from 'react';
 import Nav from './components/nav';
-import Add from './components/add';
+import React, { Component } from 'react';
 
 class App extends Component {
   state = {
@@ -40,7 +38,15 @@ handleDelete = habit => {
 handleAdd = name => {
   const habits = [...this.state.habits,{id: Date.now(), name: name, count: 0}];
   this.setState({habits});
-}
+};
+
+handleReset = () => {
+  const habits = this.state.habits.map(habit => {
+    habit.count = 0;
+    return habit;
+  });
+  this.setState({habits});
+};
 
   render() {
     return <>
@@ -52,6 +58,7 @@ handleAdd = name => {
         onIncrement={this.handleIncrement}
         onDecrement={this.handleDecrement}
         onDelete={this.handleDelete}
+        onReset={this.handleReset}
       />
     </>
   }
