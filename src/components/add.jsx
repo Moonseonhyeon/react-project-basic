@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-
-class Add extends Component {
+import React, { PureComponent } from 'react';
+/* PureComponent를 상속해서 컴포넌트를 만들면 그냥 컴포넌트와 달리
+shouldComponentUpdate()함수로 state나 props에 데이터가 변경되었는지 가벼운 비교를 해서 ture/false를 return합니다.
+true면 render함수를 호출하고 false는 안합니다. */
+class Add extends PureComponent {
 formRef = React.createRef();
 inputRef = React.createRef(); 
 /* 이렇게 맴버변수를 createRef()로 정의하면 Ref라는 오브젝트가 생김.
