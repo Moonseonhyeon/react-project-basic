@@ -2,40 +2,28 @@ import React, { Component } from 'react';
 import Habit from './habit';
 
 class Habits extends Component {
-    state = {
-        habits :[
-            {id: 1, name:'Reading', count: 0},
-            {id: 2, name:'Running', count: 0},
-            {id: 3, name:'Coding', count: 0},
-        ],
-    };
-
     handleIncrement = habit => {
-       console.log(`handleIncreament ${habit.name}`);
-       const habits = [...this.state.habits];
-       const index = habits.indexOf(habit);
-       habits[index].count++;
-       this.setState({habits: habits}); //키와 벨류(로컬 변수, 배열)가 동일한 이름을 가지면 하나로 생략가능
-    
-    };
-
-    handleDecrement = habit => {
-        const habits = [...this.state.habits];
+        const habits = [...this.props.habits];
         const index = habits.indexOf(habit);
-        const count = habits[index].count -1;
-        habits[index].count = count < 0 ? 0 : count;
-        this.setState({habits});
-    };
-
-    handleDelete = habit => {
-        const habits = this.state.habits.filter(item => item.id !== habit.id);
+        console.log(this.props.habits[index]);
+        this.props.onIncrement(this.props.habits[index]);
+     }
+ 
+     handleDecrement = habit => {
+        const habits = [...this.props.habits];
         const index = habits.indexOf(habit);
-        this.setState({habits});
-    };
+         this.props.onDecrement(this.props.habits[index]);
+     }
+ 
+     handleDelete = habit => {
+        const habits = [...this.props.habits];
+        const index = habits.indexOf(habit);
+         this.props.onDelete(this.props.habits[index]);
+     }
 
     render() {
         return <ul>
-            {this.state.habits.map(habit => (
+            {this.props.habits.map(habit => (
                 <Habit 
                     key = {habit.id} 
                     habit = {habit} 
