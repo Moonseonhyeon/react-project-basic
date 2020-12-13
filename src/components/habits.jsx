@@ -27,7 +27,7 @@ class Habits extends Component {
     }
 
     render() {
-        return <div>
+        return <div> { /*Add PureComponent를 ㄴ위해서 Fragment tag -> <div>로 수정 */}
                 <Add onAdd={this.handleAdd}></Add>
                 <ul>
                     {this.props.habits.map(habit => (

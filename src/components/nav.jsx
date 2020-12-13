@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Nav extends Component {
+class Nav extends PureComponent {
     render() {
         return (
             <header className="navbar">

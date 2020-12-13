@@ -13,19 +13,23 @@ class App extends Component {
 };
 
 handleIncrement = habit => {
-  console.log(`handleIncrement ${habit.name} ${habit.count}`);
-  const habits = [...this.state.habits];
-  const index = habits.indexOf(habit);
-  habits[index].count++;
-  this.setState({habits: habits}); //키와 벨류(로컬 변수, 배열)가 동일한 이름을 가지면 하나로 생략가능
-
-};
+  const habits = this.state.habits.map(item => {
+    if(item.id === habit.id) {
+      return {...habit, count: habit.count+1 };
+    }
+      return item;
+    });
+    this.setState({habits});
+  };
 
 handleDecrement = habit => {
-   const habits = [...this.state.habits];
-   const index = habits.indexOf(habit);
-   const count = habits[index].count -1;
-   habits[index].count = count < 0 ? 0 : count;
+  const habits = this.state.habits.map(item => {
+    if(item.id ===habit.id){
+      const count = habit.count -1;
+      return {...habit, count : count < 0 ? 0 : count};
+    }
+      return item;
+  });
    this.setState({habits});
 };
 
@@ -42,9 +46,11 @@ handleAdd = name => {
 
 handleReset = () => {
   const habits = this.state.habits.map(habit => {
-    habit.count = 0;
-    return habit;
-  });
+    if(habit.count !== 0){
+      return {...habit, count : 0};
+    }
+      return habit;
+    });
   this.setState({habits});
 };
 
