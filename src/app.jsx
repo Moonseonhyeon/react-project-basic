@@ -37,42 +37,18 @@ handleDelete = habit => {
    this.setState({habits});
 };
 
-/* sumOfCount = () => {
-  const habits = [...this.state.habits];
-  let sum = this.state.sum;
-    for(var i = 0; i < habits.length; i++){
-      const count = habits[i].count;
-      sum = sum + count;
-    }
-    this.setState({sum});
-    console.log(sum);
-}; */
-
-/* addList = name => {
-  const habits = [...this.state.habits];
-  console.log({id: 4, name: name, count: 0});
-  habits.concat({id: 4, name: name, count: 0}); 
+handleAdd = name => {
+  const habits = [...this.state.habits,{id: Date.now(), name: name, count: 0}];
   this.setState({habits});
-
-};
-
-handleChange = (e) => {
-  this.setState({
-    [e.target.name]: e.target.value
-  })
-}; */
-
+}
 
   render() {
     return <>
       <Nav
-        totalCount={this.state.habits.filter(item => item.count > 0).length} />
-      {/* <Add 
-        habits = {this.state.habits}
-        onAddList={this.addList}
-        onChange={this.handleChange}/>  */}   
+        totalCount={this.state.habits.filter(item => item.count > 0).length} /> 
       <Habits 
         habits = {this.state.habits} 
+        onAdd={this.handleAdd}
         onIncrement={this.handleIncrement}
         onDecrement={this.handleDecrement}
         onDelete={this.handleDelete}
