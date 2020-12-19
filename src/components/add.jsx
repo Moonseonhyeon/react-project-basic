@@ -4,11 +4,12 @@ true면 render함수를 호출하고 false는 안합니다. */
 
 import React, { memo } from 'react';
 //memo 자동완성하면 import 자동으로 됨.
-//함수형컴포넌트 s
+//state가 따로 없다면 함수형컴포넌트 rsi 자동완성!
 const Add = memo(props => {
-    /* memo는 class형 컴포넌트에서 PureComponent에서 처럼 props가 변경되지 않으면
-    안에있는 함수가 호출되지 않습니다. */
+    /* memo함수안에 안에 우리 fuction컴포넌트를 전달해서 memo는 
+    class형 컴포넌트에서 PureComponent에서 처럼 props가 변경되지 않으면 안에 있는 함수가 호출되지 않습니다. */
 
+    //함수니까 지역변수로 선언
     const formRef = React.createRef();
     const inputRef = React.createRef(); 
     /* 이렇게 맴버변수를 createRef()로 정의하면 Ref라는 오브젝트가 생김.
@@ -16,7 +17,7 @@ const Add = memo(props => {
     
     
     const onSubmit = event => {
-        
+        //함수안에서는 this로 접근 안해도 된다.
         console.log(inputRef.current.value);
     
         /*submit이 발생하게 되면 페이지가 리프레시가 되거나 다른 페이지로 가는 걸 예상하고 있어요.
